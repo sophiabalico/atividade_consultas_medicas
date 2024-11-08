@@ -24,3 +24,22 @@ CREATE TABLE consultas (
     FOREIGN KEY (id_medico) REFERENCES medicos(id_medico)
 );
 
+INSERT INTO pacientes (nome, data_nascimento, plano_saude) VALUES
+('Sophia Balico', '2007-05-18', 'Intermédica'),
+('Vitor Hugo', '2009-07-04','Unimed'),
+('Eliane Clara', '1978-03-28', 'Sulamérica'),
+('Jefferson Balico', '1978-01-16', 'Intermédica');
+
+INSERT INTO medicos (nome, especialidade, crm) VALUES
+('Dr. João', 'Cardiologista', 123456),
+('Dr. Maria', 'Oftalmologista', 654321),
+('Dr. José', 'Ortopedista', 789123),
+('Dr. Ana', 'Dermatologista', 456789);
+
+INSERT INTO consultas (id_paciente, id_medico, data_consulta, horario_consulta) VALUES
+(1, 4, '2021-10-01', '08:00'),
+(2, 2, '2021-10-02', '09:00'),
+(3, 1, '2021-10-03', '10:00'),
+(4, 3, '2021-10-04', '11:00');
+
+
