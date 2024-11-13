@@ -2,16 +2,16 @@ CREATE DATABASE consultas_medicas;
 
 CREATE TABLE pacientes (
     id_paciente SERIAL PRIMARY KEY,
-    nome VARCHAR(100),
+    nome VARCHAR(100) NOT NULL,
     data_nascimento DATE,
     plano_saude VARCHAR(100)
 );
 
 CREATE TABLE medicos (
     id_medico SERIAL PRIMARY KEY,
-    nome VARCHAR(100),
+    nome VARCHAR(100) NOT NULL,
     especialidade VARCHAR(100),
-    crm INTEGER
+    crm INT UNIQUE
 );
 
 CREATE TABLE consultas (
@@ -42,9 +42,7 @@ INSERT INTO consultas (id_paciente, id_medico, data_consulta, horario_consulta) 
 (3, 1, '2021-10-03', '10:00'),
 (4, 3, '2021-10-04', '11:00');
 
-SELECT  p.nome AS nome_paciente, m.nome AS nome_medico, c.data_consulta, m.especialidade FROM consultas 
-JOIN pacientes p ON c.id_paciente = p.id_paciente
-JOIN medicos m ON c.id_medico = m.id_medico;
+SELECT  p.nome AS nome_paciente, m.nome AS nome_medico, c.data_consulta, c.horario_consulta, m.especialidade, p.plano_saude AS plano_medico FROM consultas c JOIN pacientes p ON c.id_paciente = p.id_paciente JOIN medicos m ON c.id_medico = m.id_medico;
 
 SELECT p.nome FROM pacientes p LEFT JOIN consultas c ON p.id_paciente = c.id_paciente WHERE c.id_consulta IS NULL;
 
